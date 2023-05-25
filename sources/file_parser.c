@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/24 14:57:20 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:57:33 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,4 +177,5 @@ void	parse_file(t_info *info, char *file_name)
 	}
 	info->map[i] = NULL;
 	ft_lstclear(&backup, &del);
+	close(fd);
 }

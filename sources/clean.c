@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:52:46 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/24 14:53:31 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:01:39 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ void	clear_split(char **split)
 	}
 	free(split);
 	split = NULL;
+}
+
+void	clear_info(t_info *info)
+{
+	free(info->n_texture);
+	free(info->s_texture);
+	free(info->e_texture);
+	free(info->w_texture);
+	clear_split(info->map);
 }

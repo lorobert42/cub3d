@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/24 14:55:52 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:02:13 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ int	main(int argc, char **argv)
 		printf("%s", info.map[i]);
 		i++;
 	}
+	clear_info(&info);
 }

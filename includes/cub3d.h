@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/24 14:53:09 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:02:04 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	parse_file(t_info *info, char *file_name);
 void	fatal_error(char *msg);
 void	check_info_header(t_info *info);
 void	clear_split(char **split);
+void	clear_info(t_info *info);
 void	del(void *content);
 void	init_info(t_info *info);
 
