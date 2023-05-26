@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_invalid_char.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:46:36 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 10:15:07 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/26 14:17:50 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_map_invalid_char(char	**map, t_info *info)
 			}
 			else if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '\n'\
 			&& map[i][j] != ' ')
-				exit(printf("INVALID CHAR\n"));
+				fatal_error("Invalide character\n", map[i]);
 			j++;
 		}
 		i++;

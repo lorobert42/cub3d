@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_is_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:03:46 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 11:59:34 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/26 14:17:23 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	check_map_is_closed(char **map, int column, int line, int nb_line)
 	|| nb_line < line)
 	{
 		printf("\ncol %d line %d\n", column, line);
-		exit(printf("MAP NOT CLOSED"));
+		fatal_error("Map not closed\n", NULL);
 	}
 	if (map[line][column] == ' ' || map[line][column] == '\n')
-		exit(printf("INVALID CHAR\n"));
+		fatal_error("Invalid character\n", map[line]);
 	if (map[line][column] == '0')
 	{
 		map[line][column] = '.';
