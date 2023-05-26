@@ -6,18 +6,18 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:28:12 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 09:21:11 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:37:35 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	check_color(t_color color)
+static void	check_color(t_color color, char *which)
 {
 	if (color.red < 0 || color.green < 0 || color.blue < 0)
-		fatal_error("Missing color\n", "");
+		fatal_error("Missing color\n", which);
 	if (color.red > 255 || color.green > 255 || color.blue > 255)
-		fatal_error("Invalid color\n", "");
+		fatal_error("Invalid color\n", which);
 }
 
 void	check_info_header(t_info *info)
@@ -30,8 +30,8 @@ void	check_info_header(t_info *info)
 		fatal_error("Missing texture information\n", "WE");
 	if (!info->e_texture)
 		fatal_error("Missing texture information\n", "EA");
-	check_color(info->f_color);
-	check_color(info->c_color);
+	check_color(info->f_color, "Floor");
+	check_color(info->c_color, "Ceiling");
 }
 
 void	fatal_error(char *msg, char *element)

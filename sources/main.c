@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/25 15:02:13 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:41:48 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		i;
 	t_info	info;
 	// TODO: check arguments
+	errno = 0;
 	(void)argc;
 	parse_file(&info, argv[1]);
 	printf("%s\n", info.n_texture);
