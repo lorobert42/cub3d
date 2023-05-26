@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/24 14:13:51 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:45:02 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	init_info(t_info *info)
 	info->e_texture = NULL;
 	init_color(&info->f_color);
 	init_color(&info->c_color);
+}
+
+void	init_mlx(t_info *info)
+{
+	info->mlx_ptr = mlx_init();
+	info->win_ptr = mlx_new_window(info->mlx_ptr, WIDTH, HEIGHT, "cub3D");
 }
