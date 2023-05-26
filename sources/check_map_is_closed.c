@@ -6,7 +6,7 @@
 /*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:03:46 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 10:58:26 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/26 11:59:34 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 void	check_map_is_closed(char **map, int column, int line, int nb_line)
 {
+	if (line < 0 || ft_strlen(map[line]) <= (size_t)column || column < 0 \
+	|| nb_line < line)
+	{
+		printf("\ncol %d line %d\n", column, line);
+		exit(printf("MAP NOT CLOSED"));
+	}
+	if (map[line][column] == ' ' || map[line][column] == '\n')
+		exit(printf("INVALID CHAR\n"));
 	if (map[line][column] == '0')
 	{
 		map[line][column] = '.';
