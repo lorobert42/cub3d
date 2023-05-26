@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 13:57:47 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:09:34 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct s_color
 	int	blue;
 }	t_color;
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+}	t_point;
+
 /*#BSQ map[ligne][coloumn]*/
 typedef struct s_info
 {
@@ -44,12 +50,9 @@ typedef struct s_info
 	int		start_line;
 
 //////////////////lorobert///////////////////////
-	float	pos_x;
-	float	pos_y;
-	float	dir_x;
-	float	dir_y;
-	float	plane_x;
-	float	plane_y;
+	t_point	pos;
+	t_point	dir;
+	t_point	plane;
 	char	*n_texture;
 	char	*s_texture;
 	char	*w_texture;
