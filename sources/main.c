@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 10:41:48 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:07:39 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,20 @@ int	main(int argc, char **argv)
 	printf("%d, %d, %d\n", info.f_color.red, info.f_color.green, info.f_color.blue);
 	printf("%d, %d, %d\n", info.c_color.red, info.c_color.green, info.c_color.blue);
 	i = 0;
+
+	printf("\n\n\n\n---------------------------------\n");
 	while (info.map[i])
 	{
-		printf("%s", info.map[i]);
+		printf("%02d |%s",i, info.map[i]);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	check_map(&info);
+	printf("\n\n\n\n---------------------------------\n");
+	while (info.map[i])
+	{
+		printf("%02d |%s",i, info.map[i]);
 		i++;
 	}
 	clear_info(&info);

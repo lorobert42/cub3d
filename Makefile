@@ -6,7 +6,7 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/05/26 10:30:45 by lorobert         ###   ########.fr        #
+#    Updated: 2023/05/26 11:06:47 by shiroz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ SRCS		:=	main.c \
 				init.c \
 				file_parser.c \
 				error.c \
-				clean.c
+				clean.c \
+				check_map.c \
+				check_map_invalid_char.c \
+				check_map_is_closed.c \
+				ft_strdup_tab_of_string.c \
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
@@ -43,7 +47,7 @@ LDLIBS		:=	$(addprefix -l,$(LIBS))
 
 RM			:=	rm -f
 UNAME		:=	$(shell uname)
-MAKEFLAGS	+=	--no-print-directory
+#MAKEFLAGS	+=	--no-print-directory
 DIR_DUP		=	mkdir -p $(@D)
 
 all: $(NAME)
