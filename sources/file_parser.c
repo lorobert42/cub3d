@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 09:16:24 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:49:23 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	extract_texture(t_info *info, char *line, t_arg_type t)
 		fatal_error(NULL, line);
 	if (!split[1])
 		fatal_error("No texture file provided\n", line);
+	if (split[2])
+		fatal_error("Too many texture files\n", line);
 	if (t == NO)
 		info->n_texture = ft_strdup(split[1]);
 	else if (t == SO)
@@ -77,7 +79,7 @@ static void	get_color(char *c_str, t_color *color)
 	split = ft_split(c_str, ',');
 	if (!split)
 		fatal_error(NULL, c_str);
-	if (!split[0] || !split[1] || !split[2])
+	if (!split[0] || !split[1] || !split[2] || split[3])
 		fatal_error("Wrong color format, use R,G,B\n", c_str);
 	check_color_component(split);
 	color->red = ft_atoi(split[0]);
