@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:51:19 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 13:51:23 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:34:55 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@
 #  define K_DIGIT_1		18
 #  define K_L			37
 #  define K_C			8
+#  define K_W			13
+#  define K_A			0
+#  define K_S			1
+#  define K_D			2
 # endif
 #endif
