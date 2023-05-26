@@ -6,17 +6,20 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/05/24 14:54:49 by lorobert         ###   ########.fr        #
+#    Updated: 2023/05/26 10:10:40 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:=	cub3D
+NAME		:=	cub3D
 
-LIBS	:=	ft
+LIBS		:=	ft \
+				mlx
 LIBS_TARGET	:=	libs/libft/libft.a
+MLX_TARGET	:=	libs/mlx/libmlx.a
 
 INCS		:=	includes \
-				libs/libft
+				libs/libft \
+				libs/mlx
 
 SRC_DIR		:=	sources
 
@@ -35,19 +38,26 @@ DEPS		:=	$(OBJS:.o=.d)
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -g -fsanitize=address
 CPPFLAGS	:=	$(addprefix -I,$(INCS)) -MMD -MP
-LDFLAGS		:=	$(addprefix -L,$(dir $(LIBS_TARGET))) -fsanitize=address
+LDFLAGS		:=	$(addprefix -L,$(dir $(LIBS_TARGET))) $(addprefix -L,$(dir $(MLX_TARGET))) -fsanitize=address
 LDLIBS		:=	$(addprefix -l,$(LIBS))
 
 RM			:=	rm -f
+UNAME		:=	$(shell uname)
 MAKEFLAGS	+=	--no-print-directory
 DIR_DUP		=	mkdir -p $(@D)
 
 all: $(NAME)
 
-$(NAME): $(LIBS_TARGET) $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+$(NAME): $(LIBS_TARGET) $(MLX_TARGET) $(OBJS)
+ifeq ($(UNAME),Linux)
+	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME) -lXext -lX11 -lm
+else
+	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME) -framework OpenGL -framework Appkit -lm
+endif
 
 $(LIBS_TARGET):
+	$(MAKE) -C $(@D)
+$(MLX_TARGET):
 	$(MAKE) -C $(@D)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
@@ -69,4 +79,3 @@ re:
 	$(MAKE) all
 
 .PHONY: all clean fclean re
-.SILENT:
