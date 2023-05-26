@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:03:46 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 14:17:23 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:20:28 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_map_is_closed(char **map, int column, int line, int nb_line)
 		fatal_error("Map not closed\n", NULL);
 	}
 	if (map[line][column] == ' ' || map[line][column] == '\n')
-		fatal_error("Invalid character\n", map[line]);
+		fatal_error("Invalid character\n", NULL);
 	if (map[line][column] == '0')
 	{
 		map[line][column] = '.';
