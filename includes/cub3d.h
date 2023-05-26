@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 14:09:34 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:22:06 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "libft.h"
 # include "mlx.h"
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_color
 {
