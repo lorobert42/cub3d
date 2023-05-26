@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/25 14:57:33 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 09:16:24 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,20 @@ static t_arg_type	identify_line(char *line)
 static void	extract_texture(t_info *info, char *line, t_arg_type t)
 {
 	char	**split;
-	int		i;
 
 	split = ft_split(line, ' ');
 	if (!split)
-		fatal_error(NULL);
-	i = 0;
-	while (split[i] && ft_strncmp(split[i], "./", 2))
-		i++;
-	if (!split[i])
-		fatal_error("No texture file provided\n");
+		fatal_error(NULL, line);
+	if (!split[1])
+		fatal_error("No texture file provided\n", line);
 	if (t == NO)
-		info->n_texture = ft_strdup(split[i]);
+		info->n_texture = ft_strdup(split[1]);
 	else if (t == SO)
-		info->s_texture = ft_strdup(split[i]);
+		info->s_texture = ft_strdup(split[1]);
 	else if (t == WE)
-		info->w_texture = ft_strdup(split[i]);
+		info->w_texture = ft_strdup(split[1]);
 	else if (t == EA)
-		info->e_texture = ft_strdup(split[i]);
+		info->e_texture = ft_strdup(split[1]);
 	clear_split(split);
 }
 
@@ -67,7 +63,7 @@ static void	check_color_component(char **color)
 		while (color[i][j])
 		{
 			if (!ft_isdigit(color[i][j]))
-				fatal_error("Color must contain numbers only\n");
+				fatal_error("Color must contain numbers only\n", color[i]);
 			j++;
 		}
 		i++;
@@ -80,9 +76,9 @@ static void	get_color(char *c_str, t_color *color)
 
 	split = ft_split(c_str, ',');
 	if (!split)
-		fatal_error(NULL);
+		fatal_error(NULL, c_str);
 	if (!split[0] || !split[1] || !split[2])
-		fatal_error("Wrong color format, use R,G,B\n");
+		fatal_error("Wrong color format, use R,G,B\n", c_str);
 	check_color_component(split);
 	color->red = ft_atoi(split[0]);
 	color->green = ft_atoi(split[1]);
@@ -93,20 +89,16 @@ static void	get_color(char *c_str, t_color *color)
 static void	extract_color(t_info *info, char *line, t_arg_type t)
 {
 	char	**split;
-	int		i;
 
 	split = ft_split(line, ' ');
 	if (!split)
-		fatal_error(NULL);
-	i = 0;
-	while (split[i] && !ft_isdigit(split[i][0]))
-		i++;
-	if (!split[i])
-		fatal_error("No color provided\n");
+		fatal_error(NULL, line);
+	if (!split[1])
+		fatal_error("No color provided\n", line);
 	if (t == F)
-		get_color(split[i], &info->f_color);
+		get_color(split[1], &info->f_color);
 	else if (t == C)
-		get_color(split[i], &info->c_color);
+		get_color(split[1], &info->c_color);
 	clear_split(split);
 }
 
@@ -154,7 +146,7 @@ void	parse_file(t_info *info, char *file_name)
 	init_info(info);
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		fatal_error(NULL);
+		fatal_error(NULL, file_name);
 	line = parse_header(fd, info);
 	tmp = NULL;
 	while (line)
@@ -166,7 +158,7 @@ void	parse_file(t_info *info, char *file_name)
 	info->nb_lines = ft_lstsize(tmp);
 	info->map = malloc(sizeof(char *) * (info->nb_lines + 1));
 	if (!info->map)
-		fatal_error(NULL);
+		fatal_error(NULL, "map allocation");
 	backup = tmp;
 	i = 0;
 	while (tmp)
