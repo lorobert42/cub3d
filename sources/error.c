@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:28:12 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 10:37:35 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:04:50 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	fatal_error(char *msg, char *element)
 		perror(element);
 	else
 	{
-		ft_putstr_fd(element, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
+		if (element)
+		{
+			ft_putstr_fd(element, STDERR_FILENO);
+			ft_putstr_fd(": ", STDERR_FILENO);
+		}
 		ft_putstr_fd(msg, STDERR_FILENO);
 	}
 	exit (1);

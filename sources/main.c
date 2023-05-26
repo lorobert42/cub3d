@@ -6,19 +6,32 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 11:07:39 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/26 12:08:05 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	check_arg(int argc, char **argv)
+{
+	char	*point;
+
+	if (argc > 2)
+		fatal_error("Too many arguments\n", NULL);
+	else if (argc < 2)
+		fatal_error("Missing map argument\n", NULL);
+	point = ft_strrchr(argv[1], '.');
+	if (!point || ft_strncmp(point, ".cub", 5))
+		fatal_error(".cub file required\n", NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
 	t_info	info;
-	// TODO: check arguments
+
 	errno = 0;
-	(void)argc;
+	check_arg(argc, argv);
 	parse_file(&info, argv[1]);
 	printf("%s\n", info.n_texture);
 	printf("%s\n", info.s_texture);
