@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 14:33:59 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:37:39 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,23 @@
 static int	key_hooks(int keycode, t_info *info)
 {
 	printf("%d\n", keycode);
+
+
 	if (keycode == K_ESC)
 		quit(info);
-	return (0);
+/*	else if (keycode == K_RIGHT)
+		//
+	else if (keycode == K_LEFT)
+		//
+	else if (keycode == K_W)
+		//
+	else if (keycode == K_A)
+		//
+	else if (keycode == K_S)
+		//
+	else if (keycode == K_D)
+		//
+*/	return (0);
 }
 
 void	hooks(t_info *info)
