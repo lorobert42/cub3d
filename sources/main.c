@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 13:57:13 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:10:06 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int	main(int argc, char **argv)
 	check_arg(argc, argv);
 	parse_file(&info, argv[1]);
 	check_map(&info);
+	init_player(&info);
 	init_mlx(&info);
-	printf("%d, %d, %c\n", info.start_column, info.start_line, info.start_direction);
 	hooks(&info);
+	raycast(&info);
 	mlx_loop(info.mlx_ptr);
 	clear_info(&info);
 }

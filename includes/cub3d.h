@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 14:22:06 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:09:53 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/errno.h>
+# include <float.h>
+# include <math.h>
 # include "keys.h"
 # include "libft.h"
 # include "mlx.h"
@@ -86,8 +88,10 @@ void	clear_mlx(t_info *info);
 void	del(void *content);
 void	init_info(t_info *info);
 void	init_mlx(t_info *info);
+void	init_player(t_info *info);
 void	hooks(t_info *info);
 int		quit(t_info *info);
+void	raycast(t_info *info);
 
 ///////////////////shiroz///////////////////////
 void	check_map(t_info *info);

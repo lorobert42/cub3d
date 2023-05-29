@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 13:45:02 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:20:25 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,34 @@ void	init_mlx(t_info *info)
 {
 	info->mlx_ptr = mlx_init();
 	info->win_ptr = mlx_new_window(info->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+}
+
+void	init_player(t_info *info)
+{
+	info->pos.x = info->start_column;
+	info->pos.y = info->start_line;
+	info->dir.x = 0;
+	info->dir.y = -1;
+	info->plane.x = 0.66;
+	info->plane.y = 0;
+	/* if (info->start_direction == 'N')
+	{
+		info->dir.x = 0;
+		info->dir.y = -1;
+	}
+	else if (info->start_direction == 'S')
+	{
+		info->dir.x = 0;
+		info->dir.y = 1;
+	}
+	else if (info->start_direction == 'W')
+	{
+		info->dir.x = 1;
+		info->dir.y = 0;
+	}
+	else if (info->start_direction == 'E')
+	{
+		info->dir.x = -1;
+		info->dir.y = 0;
+	} */
 }
