@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/29 12:09:53 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 09:48:06 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+
 typedef struct s_color
 {
 	int	red;
@@ -40,7 +41,24 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
-/*#BSQ map[ligne][coloumn]*/
+//	field => the percentage of view
+//
+
+typedef struct s_view
+{
+	int	field_horizontal;
+	int	field_vertical;
+
+}	t_view;
+
+typedef struct s_texture
+{
+	void	*image;
+	int		width;
+	int		height;
+}	t_texture;
+
+/*#BSQ map[line][column]*/
 typedef struct s_info
 {
 	char	**map;
@@ -50,6 +68,11 @@ typedef struct s_info
 	char	start_direction;
 	int		start_column;
 	int		start_line;
+	t_texture	n_info;
+	t_texture	s_info;
+	t_texture	w_info;
+	t_texture	e_info;
+
 
 //////////////////lorobert///////////////////////
 	t_point	pos;
@@ -98,4 +121,6 @@ void	check_map(t_info *info);
 char	**ft_strdup_tab_of_string(char **to_duplicate);
 void	check_map_invalid_char(char **map, t_info *info);
 void	check_map_is_closed(char **map, int column, int line, int nb_line);
+void	check_texture(t_info *info);
+
 #endif

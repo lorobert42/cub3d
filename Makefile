@@ -6,7 +6,7 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/05/27 16:23:17 by lorobert         ###   ########.fr        #
+#    Updated: 2023/05/31 09:48:43 by shiroz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS		:=	main.c \
 				ft_strdup_tab_of_string.c \
 				mlx_hooks.c \
 				quit.c \
-				raycasting.c
+				raycasting.c \
+				check_texture.c
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
