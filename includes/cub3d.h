@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 09:48:06 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:15:39 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-
 typedef struct s_color
 {
 	int	red;
@@ -41,9 +40,15 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
+typedef struct s_line
+{
+	int		n_line;
+	int		wall_size;
+	float	wall_x;
+}	t_line;
+
 //	field => the percentage of view
 //
-
 typedef struct s_view
 {
 	int	field_horizontal;

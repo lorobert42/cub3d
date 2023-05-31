@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:22:58 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 09:42:14 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:01:20 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	raycast(t_info *info)
 		if (draw_start < 0)
 			draw_start = 0;
 		draw_end = line_height / 2 + HEIGHT / 2;
-		if (draw_end < 0)
-			draw_end = 0;
+		if (draw_end >= HEIGHT)
+			draw_end = HEIGHT - 1;
 		printf("x: %ld, draw_start: %d, draw_end: %d\n", lrintf(x), draw_start, draw_end);
 		x++;
 	}
