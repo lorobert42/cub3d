@@ -1,6 +1,7 @@
 .vscode/
 .build/
 cub3D
+*.swp
 
 # Prerequisites
 *.d
