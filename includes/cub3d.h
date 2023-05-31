@@ -31,7 +31,7 @@ typedef struct s_point
 
 typedef struct s_line
 {
-	int		n_line;
+	int		n_col;
 	int		wall_size;
 	float	wall_x;
 }	t_line;
