@@ -74,6 +74,9 @@ typedef struct s_info
 	int			start_column;
 	int			start_line;
 	int			middle;
+	unsigned int	floor;
+	unsigned int	ceiling;
+
 	t_texture	n_info;
 	t_texture	s_info;
 	t_texture	w_info;

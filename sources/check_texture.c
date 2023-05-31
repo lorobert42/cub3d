@@ -6,7 +6,7 @@
 /*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:29:06 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 11:29:44 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:08:32 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	check_texture(t_info *info)
 		//free something
 		fatal_error("", "Texture");
 	}
+	info->floor = mlx_get_color_value(info->mlx_ptr, info->f_color.final);
+	info->ceiling = mlx_get_color_value(info->mlx_ptr, info->c_color.final);
 	info->image.data = mlx_new_image(info->mlx_ptr, WIDTH, HEIGHT);
 	info->image.image = mlx_get_data_addr(info->image.data,\
 		&info->image.bits_per_pixel, &info->image.size_line, &info->image.endian);
