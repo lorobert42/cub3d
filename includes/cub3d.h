@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 10:25:39 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:33:57 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,31 @@ typedef struct s_texture
 /*#BSQ map[line][column]*/
 typedef struct s_info
 {
-	char	**map;
-	int		nb_lines;
+	char		**map;
+	int			nb_lines;
 
 //////////////////shiroz///////////////////////
-	char	start_direction;
-	int		start_column;
-	int		start_line;
+	char		start_direction;
+	int			start_column;
+	int			start_line;
 	t_texture	n_info;
 	t_texture	s_info;
 	t_texture	w_info;
 	t_texture	e_info;
-	s_line		line_to_print;
+	t_line		line_to_print;
 
 //////////////////lorobert///////////////////////
-	t_point	pos;
-	t_point	dir;
-	t_point	plane;
-	char	*n_texture;
-	char	*s_texture;
-	char	*w_texture;
-	char	*e_texture;
-	t_color	f_color;
-	t_color	c_color;
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_point		pos;
+	t_point		dir;
+	t_point		plane;
+	char		*n_texture;
+	char		*s_texture;
+	char		*w_texture;
+	char		*e_texture;
+	t_color		f_color;
+	t_color		c_color;
+	void		*mlx_ptr;
+	void		*win_ptr;
 }	t_info;
 
 typedef enum e_arg_type
