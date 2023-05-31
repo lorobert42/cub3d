@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 10:15:39 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:25:39 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_info
 	t_texture	s_info;
 	t_texture	w_info;
 	t_texture	e_info;
-
+	s_line		line_to_print;
 
 //////////////////lorobert///////////////////////
 	t_point	pos;
