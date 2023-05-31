@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 09:49:29 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/05/31 12:02:15 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ int	main(int argc, char **argv)
 	check_texture(&info);
 	hooks(&info);
 	raycast(&info);
+//	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.s_info.image, 0, 0);
+	ft_put_line(&info);
+	printf("%s\n", info.image.image);
+	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.image.data, 0, 0);
 	mlx_loop(info.mlx_ptr);
 	clear_info(&info);
 }

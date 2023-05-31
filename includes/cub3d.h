@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 13:53:59 by lorobert         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -64,6 +52,17 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
+typedef struct s_image
+{
+	void	*data;
+	char	*image;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}	t_image;
+
+
+
 /*#BSQ map[line][column]*/
 typedef struct s_info
 {
@@ -74,12 +73,13 @@ typedef struct s_info
 	char		start_direction;
 	int			start_column;
 	int			start_line;
+	int			middle;
 	t_texture	n_info;
 	t_texture	s_info;
 	t_texture	w_info;
 	t_texture	e_info;
 	t_line		line_to_print;
-
+	t_image		image;
 //////////////////lorobert///////////////////////
 	t_point		pos;
 	t_point		dir;
@@ -128,5 +128,5 @@ char	**ft_strdup_tab_of_string(char **to_duplicate);
 void	check_map_invalid_char(char **map, t_info *info);
 void	check_map_is_closed(char **map, int column, int line, int nb_line);
 void	check_texture(t_info *info);
-
+void	ft_put_line(t_info *info);
 #endif
