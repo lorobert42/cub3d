@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 15:11:05 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:45:23 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_mlx(t_info *info)
 
 void	init_player(t_info *info)
 {
-	info->pos.x = info->start_column;
-	info->pos.y = info->nb_lines - info->start_line;
+	info->pos.x = info->start_column + 0.5;
+	info->pos.y = info->nb_lines - info->start_line + 0.5;
 	if (info->start_direction == 'N')
 	{
 		info->dir.x = 0;
