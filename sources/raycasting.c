@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:22:58 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 10:01:20 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:39:26 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ void	raycast(t_info *info)
 	int		hit;
 	int		side;
 	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	float	wall_x;
 
 	x = 0;
 	while (x < WIDTH)
 	{
 		camera_x = 2 * x / (float)WIDTH - 1;
+		//printf("camera_x: %f\n", camera_x);
 		ray_dir.x = info->dir.x + info->plane.x * camera_x;
 		ray_dir.y = info->dir.y + info->plane.y * camera_x;
+		//printf("ray_dir: %f, %f\n", ray_dir.x, ray_dir.y);
 		map_x = (int)info->pos.x;
 		map_y = (int)info->pos.y;
 		if (ray_dir.x == 0)
@@ -66,6 +67,7 @@ void	raycast(t_info *info)
 			step_y = 1;
 			side_dist.y = (map_y + 1.0 - info->pos.y) * delta_dist.y;
 		}
+		hit = 0;
 		while (hit == 0)
 		{
 			if (side_dist.x < side_dist.y)
@@ -80,21 +82,24 @@ void	raycast(t_info *info)
 				map_y += step_y;
 				side = 1;
 			}
-			if (info->map[map_y][map_x] == '1')
+			if (info->map[info->nb_lines - map_y][map_x] == '1')
 				hit = 1;
 		}
+		//printf("Wall hit: %d, %d, distance: %f, %f\n", info->nb_lines - map_y, map_x, side_dist.x, side_dist.y);
 		if (side == 0)
 			perp_wall_dist = (side_dist.x - delta_dist.x);
 		else
 			perp_wall_dist = (side_dist.y - delta_dist.y);
 		line_height = (int)(HEIGHT / perp_wall_dist);
-		draw_start = -line_height / 2 + HEIGHT / 2;
-		if (draw_start < 0)
-			draw_start = 0;
-		draw_end = line_height / 2 + HEIGHT / 2;
-		if (draw_end >= HEIGHT)
-			draw_end = HEIGHT - 1;
-		printf("x: %ld, draw_start: %d, draw_end: %d\n", lrintf(x), draw_start, draw_end);
+		if (side == 0)
+			wall_x = info->pos.y + perp_wall_dist * ray_dir.y;
+		else
+			wall_x = info->pos.x + perp_wall_dist * ray_dir.x;
+		wall_x -= floor(wall_x);
+		info->line_to_print.n_col = x;
+		info->line_to_print.wall_size = line_height;
+		info->line_to_print.wall_x = wall_x;
+		//printf("x: %ld, line_height: %d, wall_x: %f\n", lrintf(x), line_height, wall_x);
 		x++;
 	}
 }
