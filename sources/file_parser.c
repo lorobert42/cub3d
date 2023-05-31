@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 11:49:23 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:55:07 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static void	get_color(char *c_str, t_color *color)
 	color->red = ft_atoi(split[0]);
 	color->green = ft_atoi(split[1]);
 	color->blue = ft_atoi(split[2]);
+	color->final = (0 << 24 | color->red << 16 | color->green << 8 | \
+		color->blue);
 	clear_split(split);
 }
 

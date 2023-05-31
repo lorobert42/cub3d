@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:53:27 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 10:33:57 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:53:59 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_color
 	int	red;
 	int	green;
 	int	blue;
+	int	final;
 }	t_color;
 
 typedef struct s_point
