@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 14:05:19 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:11:05 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,32 @@ void	init_player(t_info *info)
 {
 	info->pos.x = info->start_column;
 	info->pos.y = info->nb_lines - info->start_line;
-	info->dir.x = 0;
-	info->dir.y = 1;
-	info->plane.x = 0.66;
-	info->plane.y = 0;
-	/* if (info->start_direction == 'N')
+	if (info->start_direction == 'N')
 	{
 		info->dir.x = 0;
-		info->dir.y = -1;
+		info->dir.y = 1;
+		info->plane.x = 0.66;
+		info->plane.y = 0;
 	}
 	else if (info->start_direction == 'S')
 	{
 		info->dir.x = 0;
-		info->dir.y = 1;
+		info->dir.y = -1;
+		info->plane.x = -0.66;
+		info->plane.y = 0;
 	}
 	else if (info->start_direction == 'W')
 	{
-		info->dir.x = 1;
+		info->dir.x = -1;
 		info->dir.y = 0;
+		info->plane.x = 0;
+		info->plane.y = -0.66;
 	}
 	else if (info->start_direction == 'E')
 	{
-		info->dir.x = -1;
+		info->dir.x = 1;
 		info->dir.y = 0;
-	} */
+		info->plane.x = 0;
+		info->plane.y = 0.66;
+	}
 }
