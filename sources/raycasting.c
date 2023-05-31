@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:22:58 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/29 12:20:35 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/05/31 09:42:14 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	raycast(t_info *info)
 				map_y += step_y;
 				side = 1;
 			}
-			if (info->map[map_y][map_x] == 1)
+			if (info->map[map_y][map_x] == '1')
 				hit = 1;
 		}
 		if (side == 0)
@@ -94,7 +94,7 @@ void	raycast(t_info *info)
 		draw_end = line_height / 2 + HEIGHT / 2;
 		if (draw_end < 0)
 			draw_end = 0;
-		printf("x: %f, draw_start: %d, draw_end: %d\n", x, draw_start, draw_end);
+		printf("x: %ld, draw_start: %d, draw_end: %d\n", lrintf(x), draw_start, draw_end);
 		x++;
 	}
 }
