@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/01 09:42:56 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:14:09 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,19 @@ static int	key_hooks(int keycode, t_info *info)
 			info->pos.y -= info->dir.y * MOVE_SPEED;
 	}
 	else if (keycode == K_A)
-		info->pos.x -= info->dir.x * MOVE_SPEED;
+	{
+		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->dir.y * MOVE_SPEED)] != '1')
+			info->pos.x -= info->dir.y * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)(info->pos.x + info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
+			info->pos.y += info->dir.x * MOVE_SPEED;
+	}
 	else if (keycode == K_D)
-		info->pos.x += info->dir.x * MOVE_SPEED;
+	{
+		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->dir.y * MOVE_SPEED)] != '1')
+			info->pos.x += info->dir.y * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)(info->pos.x - info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
+			info->pos.y -= info->dir.x * MOVE_SPEED;
+	}
 	else if (keycode == K_RIGHT)
 	{
 		old_dir = info->dir.x;
