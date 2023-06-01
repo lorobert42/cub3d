@@ -17,6 +17,18 @@
 # define MOVE_SPEED 0.5
 # define ROT_SPEED 0.3
 
+typedef enum e_arg_type
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+	EMPTY,
+	NONE
+}	t_arg_type;
+
 typedef struct s_color
 {
 	int	red;
@@ -33,9 +45,10 @@ typedef struct s_point
 
 typedef struct s_line
 {
-	int		n_col;
-	int		wall_size;
-	float	wall_x;
+	int			n_col;
+	int			wall_size;
+	float		wall_x;
+	t_arg_type	texture;
 }	t_line;
 
 //	field => the percentage of view
@@ -98,18 +111,6 @@ typedef struct s_info
 	void			*mlx_ptr;
 	void			*win_ptr;
 }	t_info;
-
-typedef enum e_arg_type
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C,
-	EMPTY,
-	NONE
-}	t_arg_type;
 
 //////////////////lorobert///////////////////////
 

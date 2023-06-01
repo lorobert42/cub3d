@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:22:58 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 14:42:53 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/01 20:23:15 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,34 @@ void	raycast(t_info *info)
 		info->line_to_print.n_col = x;
 		info->line_to_print.wall_size = line_height;
 		info->line_to_print.wall_x = wall_x;
+		if (ray_dir.x > 0 && ray_dir.y > 0)
+		{
+			if (side)
+				info->line_to_print.texture = SO;
+			else
+				info->line_to_print.texture = WE;
+		}
+		else if (ray_dir.x <= 0 && ray_dir.y > 0)
+		{
+			if (side)
+				info->line_to_print.texture = SO;
+			else
+				info->line_to_print.texture = EA;
+		}
+		else if (ray_dir.x > 0 && ray_dir.y <= 0)
+		{
+			if (side)
+				info->line_to_print.texture = NO;
+			else
+				info->line_to_print.texture = WE;
+		}
+		else
+		{
+			if (side)
+				info->line_to_print.texture = NO;
+			else
+				info->line_to_print.texture = EA;
+		}
 		ft_put_line(info);
 		//printf("x: %ld, line_height: %d, wall_x: %f\n", lrintf(x), line_height, wall_x);
 		x++;
