@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 15:45:23 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/02 09:59:34 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	init_player(t_info *info)
 		info->plane.x = 0;
 		info->plane.y = 0.66;
 	}
+	info->mvt = 0;
 }

@@ -6,48 +6,46 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/01 15:14:09 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/02 10:14:39 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	key_hooks(int keycode, t_info *info)
+int	move(t_info *info)
 {
 	float	old_dir;
 	float	old_plane;
 
-	if (keycode == K_ESC)
-		quit(info);
-	else if (keycode == K_W)
+	if (info->mvt & FORWARD)
 	{
 		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->dir.x * MOVE_SPEED)] != '1')
 			info->pos.x += info->dir.x * MOVE_SPEED;
 		if (info->map[info->nb_lines - (int)(info->pos.y + info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
 			info->pos.y += info->dir.y * MOVE_SPEED;
 	}
-	else if (keycode == K_S)
+	if (info->mvt & BACKWARD)
 	{
 		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->dir.x * MOVE_SPEED)] != '1')
 			info->pos.x -= info->dir.x * MOVE_SPEED;
 		if (info->map[info->nb_lines - (int)(info->pos.y - info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
 			info->pos.y -= info->dir.y * MOVE_SPEED;
 	}
-	else if (keycode == K_A)
+	if (info->mvt & LEFT)
 	{
 		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->dir.y * MOVE_SPEED)] != '1')
 			info->pos.x -= info->dir.y * MOVE_SPEED;
 		if (info->map[info->nb_lines - (int)(info->pos.x + info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
 			info->pos.y += info->dir.x * MOVE_SPEED;
 	}
-	else if (keycode == K_D)
+	if (info->mvt & RIGHT)
 	{
 		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->dir.y * MOVE_SPEED)] != '1')
 			info->pos.x += info->dir.y * MOVE_SPEED;
 		if (info->map[info->nb_lines - (int)(info->pos.x - info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
 			info->pos.y -= info->dir.x * MOVE_SPEED;
 	}
-	else if (keycode == K_RIGHT)
+	if (info->mvt & RRIGHT)
 	{
 		old_dir = info->dir.x;
 		info->dir.x = info->dir.x * cos(-ROT_SPEED) - info->dir.y * sin(-ROT_SPEED);
@@ -56,7 +54,7 @@ static int	key_hooks(int keycode, t_info *info)
 		info->plane.x = info->plane.x * cos(-ROT_SPEED) - info->plane.y * sin(-ROT_SPEED);
 		info->plane.y = old_plane * sin(-ROT_SPEED) + info->plane.y * cos(-ROT_SPEED);
 	}
-	else if (keycode == K_LEFT)
+	if (info->mvt & RLEFT)
 	{
 		old_dir = info->dir.x;
 		info->dir.x = info->dir.x * cos(ROT_SPEED) - info->dir.y * sin(ROT_SPEED);
@@ -65,15 +63,50 @@ static int	key_hooks(int keycode, t_info *info)
 		info->plane.x = info->plane.x * cos(ROT_SPEED) - info->plane.y * sin(ROT_SPEED);
 		info->plane.y = old_plane * sin(ROT_SPEED) + info->plane.y * cos(ROT_SPEED);
 	}
-	printf("New pos: %f, %f\n", info->pos.x, info->pos.y);
-	printf("New dir: %f, %f\n", info->dir.x, info->dir.y);
 	raycast(info);
 	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->image.data, 0, 0);
 	return (0);
 }
 
+static int	key_pressed(int keycode, t_info *info)
+{
+	if (keycode == K_ESC)
+		quit(info);
+	if (keycode == K_W)
+		info->mvt |= FORWARD;
+	if (keycode == K_S)
+		info->mvt |= BACKWARD;
+	if (keycode == K_A)
+		info->mvt |= LEFT;
+	if (keycode == K_D)
+		info->mvt |= RIGHT;
+	if (keycode == K_RIGHT)
+		info->mvt |= RRIGHT;
+	if (keycode == K_LEFT)
+		info->mvt |= RLEFT;
+	return (0);
+}
+
+static int	key_released(int keycode, t_info *info)
+{
+	if (keycode == K_W)
+		info->mvt &= ~FORWARD;
+	if (keycode == K_S)
+		info->mvt &= ~BACKWARD;
+	if (keycode == K_A)
+		info->mvt &= ~LEFT;
+	if (keycode == K_D)
+		info->mvt &= ~RIGHT;
+	if (keycode == K_RIGHT)
+		info->mvt &= ~RRIGHT;
+	if (keycode == K_LEFT)
+		info->mvt &= ~RLEFT;
+	return (0);
+}
+
 void	hooks(t_info *info)
 {
-	mlx_key_hook(info->win_ptr, key_hooks, info);
+	mlx_hook(info->win_ptr, 2, 1L << 0, key_pressed, info);
+	mlx_hook(info->win_ptr, 3, 1L << 1, key_released, info);
 	mlx_hook(info->win_ptr, 17, 0, quit, info);
 }

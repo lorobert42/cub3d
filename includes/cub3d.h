@@ -14,8 +14,15 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MOVE_SPEED 0.5
-# define ROT_SPEED 0.3
+# define MOVE_SPEED 0.02
+# define ROT_SPEED 0.02
+
+# define FORWARD 0b00000001
+# define BACKWARD 0b00000010
+# define RIGHT 0b00000100
+# define LEFT 0b00001000
+# define RRIGHT 0b00010000
+# define RLEFT 0b00100000
 
 typedef enum e_arg_type
 {
@@ -110,6 +117,7 @@ typedef struct s_info
 	t_color			c_color;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	int				mvt;
 }	t_info;
 
 //////////////////lorobert///////////////////////
@@ -125,6 +133,7 @@ void	init_info(t_info *info);
 void	init_mlx(t_info *info);
 void	init_player(t_info *info);
 void	hooks(t_info *info);
+int		move(t_info *info);
 int		quit(t_info *info);
 void	raycast(t_info *info);
 
