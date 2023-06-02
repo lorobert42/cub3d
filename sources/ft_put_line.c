@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:15:11 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/31 15:35:11 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/01 20:27:48 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,42 @@
 void	ft_put_line(t_info *info)
 {
 	unsigned int	*tmp;
-	unsigned int	i;
+	int	i;
+	int	start;
+	int	end;
 
-   	i = 0;
-	info->line_to_print.wall_size = (HEIGHT - info->line_to_print.wall_size) / 2;
-//	printf("ICI%d\n", info->line_to_print.wall_size);
-	while (i < (unsigned int)info->line_to_print.wall_size)
+	start = -info->line_to_print.wall_size / 2 + HEIGHT / 2;
+	if (start < 0)
+		start = 0;
+	end = info->line_to_print.wall_size / 2 + HEIGHT / 2;
+	if (end >= HEIGHT)
+		end = HEIGHT - 1;
+	i = 0;
+	while (i < start)
 	{
 		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
 		info->line_to_print.n_col) * 4 /* info->image.bits_per_pixel*/]);
 		*tmp = info->floor;
-
-
-		tmp = (unsigned int *)(&info->image.image[((WIDTH) * (HEIGHT - 1 - i) +  \
-		info->line_to_print.n_col) * 4]);
-
+		i++;
+	}
+	while (i < end)
+	{
+		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
+		info->line_to_print.n_col) * 4 /* info->image.bits_per_pixel*/]);
+		if (info->line_to_print.texture == NO)
+			*tmp = mlx_get_color_value(info->mlx_ptr, (0 << 24 | 255 << 16 | 0 << 8 | 0));
+		else if (info->line_to_print.texture == SO)
+			*tmp = mlx_get_color_value(info->mlx_ptr, (0 << 24 | 0 << 16 | 255 << 8 | 0));
+		else if (info->line_to_print.texture == EA)
+			*tmp = mlx_get_color_value(info->mlx_ptr, (0 << 24 | 0 << 16 | 0 << 8 | 255));
+		else
+			*tmp = 0;
+		i++;
+	}
+	while (i < HEIGHT)
+	{
+		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
+		info->line_to_print.n_col) * 4 /* info->image.bits_per_pixel*/]);
 		*tmp = info->ceiling;
 		i++;
 	}
