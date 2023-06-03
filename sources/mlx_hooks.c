@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/02 10:14:39 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/03 10:24:40 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	move(t_info *info)
 	}
 	if (info->mvt & LEFT)
 	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->dir.y * MOVE_SPEED)] != '1')
-			info->pos.x -= info->dir.y * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.x + info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y += info->dir.x * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->plane.x * MOVE_SPEED)] != '1')
+			info->pos.x -= info->plane.x * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)(info->pos.y - info->plane.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
+			info->pos.y -= info->plane.y * MOVE_SPEED;
 	}
 	if (info->mvt & RIGHT)
 	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->dir.y * MOVE_SPEED)] != '1')
-			info->pos.x += info->dir.y * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.x - info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y -= info->dir.x * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->plane.x * MOVE_SPEED)] != '1')
+			info->pos.x += info->plane.x * MOVE_SPEED;
+		if (info->map[info->nb_lines - (int)(info->pos.y + info->plane.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
+			info->pos.y += info->plane.y * MOVE_SPEED;
 	}
 	if (info->mvt & RRIGHT)
 	{
