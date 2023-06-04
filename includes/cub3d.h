@@ -134,6 +134,12 @@ void	init_mlx(t_info *info);
 void	init_player(t_info *info);
 void	hooks(t_info *info);
 int		move(t_info *info);
+void	forward(t_info *info);
+void	backward(t_info *info);
+void	left(t_info *info);
+void	right(t_info *info);
+void	rleft(t_info *info);
+void	rright(t_info *info);
 int		quit(t_info *info);
 void	raycast(t_info *info);
 

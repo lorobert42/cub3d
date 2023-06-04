@@ -6,7 +6,7 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/05/31 11:08:22 by shiroz           ###   ########.fr        #
+#    Updated: 2023/06/04 13:03:59 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ SRCS		:=	main.c \
 				quit.c \
 				raycasting.c \
 				check_texture.c \
-				ft_put_line.c
+				ft_put_line.c \
+				movements.c \
+				rotations.c \
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

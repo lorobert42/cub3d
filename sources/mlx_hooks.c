@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/03 10:24:40 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:06:38 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,21 @@
 
 int	move(t_info *info)
 {
-	float	old_dir;
-	float	old_plane;
-
 	if (info->mvt & FORWARD)
-	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->dir.x * MOVE_SPEED)] != '1')
-			info->pos.x += info->dir.x * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.y + info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y += info->dir.y * MOVE_SPEED;
-	}
+		forward(info);
 	if (info->mvt & BACKWARD)
-	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->dir.x * MOVE_SPEED)] != '1')
-			info->pos.x -= info->dir.x * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.y - info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y -= info->dir.y * MOVE_SPEED;
-	}
+		backward(info);
 	if (info->mvt & LEFT)
-	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x - info->plane.x * MOVE_SPEED)] != '1')
-			info->pos.x -= info->plane.x * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.y - info->plane.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y -= info->plane.y * MOVE_SPEED;
-	}
+		left(info);
 	if (info->mvt & RIGHT)
-	{
-		if (info->map[info->nb_lines - (int)info->pos.y][(int)(info->pos.x + info->plane.x * MOVE_SPEED)] != '1')
-			info->pos.x += info->plane.x * MOVE_SPEED;
-		if (info->map[info->nb_lines - (int)(info->pos.y + info->plane.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
-			info->pos.y += info->plane.y * MOVE_SPEED;
-	}
+		right(info);
 	if (info->mvt & RRIGHT)
-	{
-		old_dir = info->dir.x;
-		info->dir.x = info->dir.x * cos(-ROT_SPEED) - info->dir.y * sin(-ROT_SPEED);
-		info->dir.y = old_dir * sin(-ROT_SPEED) + info->dir.y * cos(-ROT_SPEED);
-		old_plane = info->plane.x;
-		info->plane.x = info->plane.x * cos(-ROT_SPEED) - info->plane.y * sin(-ROT_SPEED);
-		info->plane.y = old_plane * sin(-ROT_SPEED) + info->plane.y * cos(-ROT_SPEED);
-	}
+		rright(info);
 	if (info->mvt & RLEFT)
-	{
-		old_dir = info->dir.x;
-		info->dir.x = info->dir.x * cos(ROT_SPEED) - info->dir.y * sin(ROT_SPEED);
-		info->dir.y = old_dir * sin(ROT_SPEED) + info->dir.y * cos(ROT_SPEED);
-		old_plane = info->plane.x;
-		info->plane.x = info->plane.x * cos(ROT_SPEED) - info->plane.y * sin(ROT_SPEED);
-		info->plane.y = old_plane * sin(ROT_SPEED) + info->plane.y * cos(ROT_SPEED);
-	}
+		rleft(info);
 	raycast(info);
-	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->image.data, 0, 0);
+	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, \
+		info->image.data, 0, 0);
 	return (0);
 }
 
