@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:52:46 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/26 13:46:33 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:01:55 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	clear_split(char **split)
 
 void	clear_mlx(t_info *info)
 {
+	mlx_destroy_image(info->mlx_ptr, info->image.data);
 	mlx_destroy_window(info->mlx_ptr, info->win_ptr);
 }
 

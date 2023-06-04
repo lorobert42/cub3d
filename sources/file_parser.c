@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/05/31 13:55:07 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:07:31 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,13 +139,31 @@ static char	*parse_header(int fd, t_info *info)
 	return (line);
 }
 
+static void	creat_map(t_info *info, t_list *tmp)
+{
+	t_list		*backup;
+	int			i;
+
+	info->map = malloc(sizeof(char *) * (info->nb_lines + 1));
+	if (!info->map)
+		fatal_error(NULL, "map allocation");
+	backup = tmp;
+	i = 0;
+	while (tmp)
+	{
+		info->map[i] = tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	info->map[i] = NULL;
+	ft_lstclear(&backup, &del);
+}
+
 void	parse_file(t_info *info, char *file_name)
 {
 	int			fd;
 	t_list		*tmp;
-	t_list		*backup;
 	char		*line;
-	int			i;
 
 	init_info(info);
 	fd = open(file_name, O_RDONLY);
@@ -160,18 +178,6 @@ void	parse_file(t_info *info, char *file_name)
 		line = get_next_line(fd);
 	}
 	info->nb_lines = ft_lstsize(tmp);
-	info->map = malloc(sizeof(char *) * (info->nb_lines + 1));
-	if (!info->map)
-		fatal_error(NULL, "map allocation");
-	backup = tmp;
-	i = 0;
-	while (tmp)
-	{
-		info->map[i] = tmp->content;
-		tmp = tmp->next;
-		i++;
-	}
-	info->map[i] = NULL;
-	ft_lstclear(&backup, &del);
+	creat_map(info, tmp);
 	close(fd);
 }

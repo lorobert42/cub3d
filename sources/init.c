@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/02 09:59:34 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:10:43 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,23 @@ void	init_player(t_info *info)
 	{
 		info->dir.x = 0;
 		info->dir.y = 1;
-		info->plane.x = 0.66;
-		info->plane.y = 0;
 	}
 	else if (info->start_direction == 'S')
 	{
 		info->dir.x = 0;
 		info->dir.y = -1;
-		info->plane.x = -0.66;
-		info->plane.y = 0;
 	}
 	else if (info->start_direction == 'W')
 	{
 		info->dir.x = -1;
 		info->dir.y = 0;
-		info->plane.x = 0;
-		info->plane.y = -0.66;
 	}
 	else if (info->start_direction == 'E')
 	{
 		info->dir.x = 1;
 		info->dir.y = 0;
-		info->plane.x = 0;
-		info->plane.y = 0.66;
 	}
+	info->plane.x = info->dir.y * 0.66;
+	info->plane.y = info->dir.x * 0.66;
 	info->mvt = 0;
 }

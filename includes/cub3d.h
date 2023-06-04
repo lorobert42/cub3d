@@ -58,22 +58,6 @@ typedef struct s_line
 	t_arg_type	texture;
 }	t_line;
 
-//	field => the percentage of view
-//
-typedef struct s_view
-{
-	int	field_horizontal;
-	int	field_vertical;
-
-}	t_view;
-
-typedef struct s_texture
-{
-	void	*image;
-	int		width;
-	int		height;
-}	t_texture;
-
 typedef struct s_image
 {
 	void	*data;
@@ -83,7 +67,13 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
-
+typedef struct s_texture
+{
+	void	*image;
+	t_image	info_i;
+	int		width;
+	int		height;
+}	t_texture;
 
 /*#BSQ map[line][column]*/
 typedef struct s_info
@@ -109,6 +99,13 @@ typedef struct s_info
 	t_point			pos;
 	t_point			dir;
 	t_point			plane;
+	t_point			ray_dir;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	t_point			side_dist;
+	t_point			delta_dist;
 	char			*n_texture;
 	char			*s_texture;
 	char			*w_texture;
