@@ -67,12 +67,6 @@ typedef struct s_view
 
 }	t_view;
 
-typedef struct s_texture
-{
-	void	*image;
-	int		width;
-	int		height;
-}	t_texture;
 
 typedef struct s_image
 {
@@ -82,6 +76,14 @@ typedef struct s_image
 	int		size_line;
 	int		endian;
 }	t_image;
+
+typedef struct s_texture
+{
+	void	*image;
+	t_image	info_i;
+	int		width;
+	int		height;
+}	t_texture;
 
 
 
