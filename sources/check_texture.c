@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiroz <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:29:06 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/04 17:10:52 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/06 20:44:10 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	check_texture(t_info *info)
 	info->n_info.info_i.image = mlx_get_data_addr(info->n_info.image,\
 		&info->n_info.info_i.bits_per_pixel, &info->n_info.info_i.size_line, &info->n_info.info_i.endian);
 
-	info->s_info.info_i.image = mlx_get_data_addr(info->n_info.image,\
-		&info->s_info.info_i.bits_per_pixel, &info->n_info.info_i.size_line, &info->n_info.info_i.endian);
+	info->s_info.info_i.image = mlx_get_data_addr(info->s_info.image,\
+		&info->s_info.info_i.bits_per_pixel, &info->s_info.info_i.size_line, &info->s_info.info_i.endian);
 
-	info->w_info.info_i.image = mlx_get_data_addr(info->n_info.image,\
-		&info->w_info.info_i.bits_per_pixel, &info->n_info.info_i.size_line, &info->n_info.info_i.endian);
+	info->w_info.info_i.image = mlx_get_data_addr(info->w_info.image,\
+		&info->w_info.info_i.bits_per_pixel, &info->w_info.info_i.size_line, &info->w_info.info_i.endian);
 
-	info->e_info.info_i.image = mlx_get_data_addr(info->n_info.image,\
-		&info->e_info.info_i.bits_per_pixel, &info->n_info.info_i.size_line, &info->n_info.info_i.endian);
+	info->e_info.info_i.image = mlx_get_data_addr(info->e_info.image,\
+		&info->e_info.info_i.bits_per_pixel, &info->e_info.info_i.size_line, &info->e_info.info_i.endian);
 //	printf("Coucou%d %d\n", info->n_info.info_i.size_line, info->n_info.width);
 
 //	printf("|%s|\n", &info->n_info.info_i.image[999900]);
@@ -56,6 +56,6 @@ void	check_texture(t_info *info)
 	info->image.image = mlx_get_data_addr(info->image.data,\
 		&info->image.bits_per_pixel, &info->image.size_line, &info->image.endian);
 	info->middle = HEIGHT / 2 - 1;
-	//info->image = mlx_new_image(info->mlx_ptr, WIDTH + (WIDTH % 2) * 2 + 1, \
-	//HEIGHT + (HEIGHT % 2) * 2 + 1);
+	/* info->image = mlx_new_image(info->mlx_ptr, WIDTH + (WIDTH % 2) * 2 + 1, \
+	HEIGHT + (HEIGHT % 2) * 2 + 1); */
 }

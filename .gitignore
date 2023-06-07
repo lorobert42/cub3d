@@ -3,6 +3,7 @@
 .cache/
 cub3D
 *.swp
+.DS_Store
 
 # Prerequisites
 *.d

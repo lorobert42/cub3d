@@ -1,5 +1,5 @@
 NO ./texture/wall.xpm
-SO ./texture/square.xpm
+SO ./texture/Flag.xpm
 WE ./texture/ground.xpm
 EA ./texture/item.xpm
 
