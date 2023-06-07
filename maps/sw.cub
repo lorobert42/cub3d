@@ -1,7 +1,7 @@
-NO ./texture/item.xpm
-SO ./texture/d.xpm
-WE ./texture/d.xpm
-EA ./texture/d.xpm
+NO ./texture/sw.xpm
+SO ./texture/sw.xpm
+WE ./texture/sw.xpm
+EA ./texture/sw.xpm
 
 C 220,200,220
 F 225,30,0
