@@ -58,11 +58,18 @@ typedef struct s_line
 	t_arg_type	texture;
 }	t_line;
 
+typedef struct s_create
+{
+	float	height;
+	float	width;
+	int		size;
+}	t_create;
+
 typedef struct s_image
 {
 	void	*data;
 	char	*image;
-	int		bits_per_pixel;
+	int		bps;
 	int		size_line;
 	int		endian;
 }	t_image;
@@ -141,6 +148,8 @@ int		quit(t_info *info);
 void	raycast(t_info *info);
 
 ///////////////////shiroz///////////////////////
+
+void	ft_check_square(t_info  *info, t_texture *texture);
 void	check_map(t_info *info);
 char	**ft_strdup_tab_of_string(char **to_duplicate);
 void	check_map_invalid_char(char **map, t_info *info);
