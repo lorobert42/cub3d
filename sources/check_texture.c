@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:29:06 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/07 17:38:22 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/09 18:40:52 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	check_texture(t_info *info)
 	info->image.image = mlx_get_data_addr(info->image.data,\
 		&info->image.bps, &info->image.size_line, &info->image.endian);
 	info->middle = HEIGHT / 2 - 1;
-	ft_check_square(info, &info->n_info);
+//	ft_check_square(info, &info->s_info);
 }
