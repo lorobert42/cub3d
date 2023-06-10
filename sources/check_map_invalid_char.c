@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:46:36 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 14:20:20 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:31:17 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	check_map_invalid_char(char	**map, t_info *info)
 {
 	int	i;
 	int	j;
-	int	position;
 
-	position = 0;
 	i = 0;
 	while (map[i])
 	{
@@ -26,7 +24,7 @@ void	check_map_invalid_char(char	**map, t_info *info)
 		while (map[i][j] && map[i][j])
 		{
 			if ((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'\
-			|| map[i][j] == 'W') && ++position < 2)
+			|| map[i][j] == 'W'))
 			{
 				info->start_direction = map[i][j];
 				info->start_column = j;

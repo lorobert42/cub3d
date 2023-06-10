@@ -6,11 +6,29 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:29:06 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/09 18:40:52 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:15:26 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_texture_2(t_info *info)
+{
+	info->e_info.info_i.image = mlx_get_data_addr(info->e_info.image, \
+		&info->e_info.info_i.bps, &info->e_info.info_i.size_line, \
+		&info->e_info.info_i.endian);
+	if (!info->e_info.info_i.image || !info->n_info.info_i.image || \
+		!info->s_info.info_i.image || !info->w_info.info_i.image)
+		exit(1);
+	info->floor = mlx_get_color_value(info->mlx_ptr, info->f_color.final);
+	info->ceiling = mlx_get_color_value(info->mlx_ptr, info->c_color.final);
+	info->image.data = mlx_new_image(info->mlx_ptr, WIDTH, HEIGHT);
+	info->image.image = mlx_get_data_addr(info->image.data, \
+		&info->image.bps, &info->image.size_line, &info->image.endian);
+	info->middle = HEIGHT / 2 - 1;
+	if (!info->image.data || !info->image.image)
+		exit (1);
+}
 
 void	check_texture(t_info *info)
 {
@@ -24,25 +42,18 @@ void	check_texture(t_info *info)
 		&info->e_info.width, &info->e_info.height);
 	if (!info->e_info.image || !info->w_info.image || !info->s_info.image || \
 	!info->n_info.image)
-	{
-		//free something
 		fatal_error("", "Texture");
-	}
-	info->n_info.info_i.image = mlx_get_data_addr(info->n_info.image,\
-		&info->n_info.info_i.bps, &info->n_info.info_i.size_line, &info->n_info.info_i.endian);
-
-	info->s_info.info_i.image = mlx_get_data_addr(info->s_info.image,\
-		&info->s_info.info_i.bps, &info->s_info.info_i.size_line, &info->s_info.info_i.endian);
-
-	info->w_info.info_i.image = mlx_get_data_addr(info->w_info.image,\
-		&info->w_info.info_i.bps, &info->w_info.info_i.size_line, &info->w_info.info_i.endian);
-	info->e_info.info_i.image = mlx_get_data_addr(info->e_info.image,\
-		&info->e_info.info_i.bps, &info->e_info.info_i.size_line, &info->e_info.info_i.endian);
-	info->floor = mlx_get_color_value(info->mlx_ptr, info->f_color.final);
-	info->ceiling = mlx_get_color_value(info->mlx_ptr, info->c_color.final);
-	info->image.data = mlx_new_image(info->mlx_ptr, WIDTH, HEIGHT);
-	info->image.image = mlx_get_data_addr(info->image.data,\
-		&info->image.bps, &info->image.size_line, &info->image.endian);
-	info->middle = HEIGHT / 2 - 1;
-//	ft_check_square(info, &info->s_info);
+	info->n_info.info_i.image = mlx_get_data_addr \
+		(info->n_info.image, &info->n_info.info_i.bps, &info->n_info.info_i \
+		.size_line, &info->n_info.info_i.endian);
+	info->s_info.info_i.image = mlx_get_data_addr(info->s_info.image, \
+		&info->s_info.info_i.bps, &info->s_info.info_i.size_line, \
+		&info->s_info.info_i.endian);
+	info->w_info.info_i.image = mlx_get_data_addr(info->w_info.image, \
+		&info->w_info.info_i.bps, &info->w_info.info_i.size_line, \
+		&info->w_info.info_i.endian);
+	info->e_info.info_i.image = mlx_get_data_addr(info->e_info.image, \
+		&info->e_info.info_i.bps, &info->e_info.info_i.size_line, \
+		&info->e_info.info_i.endian);
+	check_texture_2(info);
 }

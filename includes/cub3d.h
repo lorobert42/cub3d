@@ -149,7 +149,7 @@ void	raycast(t_info *info);
 
 ///////////////////shiroz///////////////////////
 
-void	ft_check_square(t_info  *info, t_texture *texture);
+//void	ft_check_square(t_info  *info, t_texture *texture);
 void	check_map(t_info *info);
 char	**ft_strdup_tab_of_string(char **to_duplicate);
 void	check_map_invalid_char(char **map, t_info *info);

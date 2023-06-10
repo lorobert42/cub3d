@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:14:44 by shiroz            #+#    #+#             */
-/*   Updated: 2023/05/26 14:16:05 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:24:01 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_map(t_info *info)
 	check_map_invalid_char(map, info);
 	if (info->start_direction == '\0')
 		fatal_error("Missing start position\n", "map");
-	check_map_is_closed(map, info->start_column, info->start_line, info->nb_lines);
-//	info->map = map;
+	check_map_is_closed(map, info->start_column, info->start_line, \
+		info->nb_lines);
 	mfree(map);
 }
