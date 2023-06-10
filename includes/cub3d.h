@@ -24,6 +24,7 @@
 # define RRIGHT 0b00010000
 # define RLEFT 0b00100000
 
+
 typedef enum e_arg_type
 {
 	NO,
@@ -81,6 +82,20 @@ typedef struct s_texture
 	int		width;
 	int		height;
 }	t_texture;
+
+
+typedef struct s_put_line
+{
+	unsigned int	*tmp;
+	int				i;
+	int				start;
+	int				end;
+	float			step;
+	int				tex_x;
+	int				tex_y;
+	float			tex_pos;
+	t_texture		texture;
+}	t_put_line;
 
 /*#BSQ map[line][column]*/
 typedef struct s_info
