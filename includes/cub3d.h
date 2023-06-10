@@ -127,6 +127,8 @@ typedef struct s_info
 //////////////////lorobert///////////////////////
 
 void	parse_file(t_info *info, char *file_name);
+void	extract_color(t_info *info, char *line, t_arg_type t);
+void	extract_texture(t_info *info, char *line, t_arg_type t);
 void	fatal_error(char *msg, char *element);
 void	check_info_header(t_info *info);
 void	clear_split(char **split);
@@ -145,6 +147,7 @@ void	right(t_info *info);
 void	rleft(t_info *info);
 void	rright(t_info *info);
 int		quit(t_info *info);
+void	init_raycat(t_info *info, int x);
 void	raycast(t_info *info);
 
 ///////////////////shiroz///////////////////////
