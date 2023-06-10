@@ -6,68 +6,81 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:15:11 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/07 09:17:11 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/10 14:35:19 by shiroz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	ft_put_line_start(t_info *info, t_put_line *t)
+{
+	t->start = -info->line_to_print.wall_size / 2 + HEIGHT / 2;
+	if (t->start < 0)
+		t->start = 0;
+	t->end = info->line_to_print.wall_size / 2 + HEIGHT / 2;
+	if (t->end >= HEIGHT)
+		t->end = HEIGHT - 1;
+	if (info->line_to_print.texture == NO)
+		t->texture = info->n_info;
+	else if (info->line_to_print.texture == SO)
+		t->texture = info->s_info;
+	else if (info->line_to_print.texture == EA)
+		t->texture = info->e_info;
+	else
+		t->texture = info->w_info;
+}
+
+void	ft_put_texture(t_info *info, t_put_line *t, int *tmp_i, int i)
+{
+	while (i < t->end)
+	{
+		t->tex_y = (int)t->tex_pos & (t->texture.height - 1);
+		t->tex_pos += t->step;
+		t->tmp = (unsigned int *)(&info->image.image[(WIDTH * i \
+			+ info->line_to_print.n_col) * 4]);
+		*t->tmp = t->texture.info_i.image[(t->texture.width * \
+			t->tex_y + t->tex_x) * 4];
+		t->tmp = (unsigned int *)(&info->image.image[(WIDTH * \
+			i + info->line_to_print.n_col) * 4 + 1]);
+		*t->tmp = t->texture.info_i.image[(t->texture.width \
+			* t->tex_y + t->tex_x) * 4 + 1];
+		t->tmp = (unsigned int *)(&info->image.image[(WIDTH * \
+			i + info->line_to_print.n_col) * 4] + 2);
+		*t->tmp = t->texture.info_i.image[(t->texture.width * \
+			t->tex_y + t->tex_x) * 4 + 2];
+		t->tmp = (unsigned int *)(&info->image.image[(WIDTH * \
+			i + info->line_to_print.n_col) * 4] + 3);
+		*t->tmp = t->texture.info_i.image[(t->texture.width * \
+			t->tex_y + t->tex_x) * 4 + 3];
+		i++;
+	}
+	*tmp_i = i;
+}
+
 void	ft_put_line(t_info *info)
 {
-	unsigned int	*tmp;
 	int				i;
-	int				start;
-	int				end;
-	float			step;
-	int				tex_x;
-	int				tex_y;
-	float			tex_pos;
-	t_texture		texture;
+	t_put_line		t;
 
-	start = -info->line_to_print.wall_size / 2 + HEIGHT / 2;
-	if (start < 0)
-		start = 0;
-	end = info->line_to_print.wall_size / 2 + HEIGHT / 2;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	if (info->line_to_print.texture == NO)
-		texture = info->n_info;
-	else if (info->line_to_print.texture == SO)
-		texture = info->s_info;
-	else if (info->line_to_print.texture == EA)
-		texture = info->e_info;
-	else
-		texture = info->w_info;
+	ft_put_line_start(info, &t);
 	i = 0;
-	while (i < start)
+	while (i < t.start)
 	{
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
-		info->line_to_print.n_col) * 4 /* info->image.bits_per_pixel*/]);
-		*tmp = info->ceiling;
+		t.tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
+		info->line_to_print.n_col) * 4]);
+		*t.tmp = info->ceiling;
 		i++;
 	}
-	tex_x = info->line_to_print.wall_x * texture.width;
-	step = 1.0 * texture.height / info->line_to_print.wall_size;
-	tex_pos = (start - (float)HEIGHT / 2 + (float)info->line_to_print.wall_size / 2) * step;
-	while (i < end)
-	{
-		tex_y = (int)tex_pos & (texture.height - 1);
-		tex_pos += step;
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + info->line_to_print.n_col) * 4]);
-		*tmp = texture.info_i.image[(texture.width * tex_y + tex_x) * 4];
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + info->line_to_print.n_col) * 4 + 1]);
-		*tmp = texture.info_i.image[(texture.width * tex_y + tex_x) * 4 + 1];
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + info->line_to_print.n_col) * 4] + 2);
-		*tmp = texture.info_i.image[(texture.width * tex_y + tex_x) * 4 + 2];
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + info->line_to_print.n_col) * 4] + 3);
-		*tmp = texture.info_i.image[(texture.width * tex_y + tex_x) * 4 + 3];
-		i++;
-	}
+	t.tex_x = info->line_to_print.wall_x * t.texture.width;
+	t.step = 1.0 * t.texture.height / info->line_to_print.wall_size;
+	t.tex_pos = (t.start - (float)HEIGHT / 2 + \
+		(float)info->line_to_print.wall_size / 2) * t.step;
+	ft_put_texture(info, &t, &i, i);
 	while (i < HEIGHT)
 	{
-		tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
-		info->line_to_print.n_col) * 4 /* info->image.bits_per_pixel*/]);
-		*tmp = info->floor;
+		t.tmp = (unsigned int *)(&info->image.image[(WIDTH * i + \
+		info->line_to_print.n_col) * 4]);
+		*t.tmp = info->floor;
 		i++;
 	}
 }
