@@ -6,7 +6,7 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/06/10 11:32:02 by shiroz           ###   ########.fr        #
+#    Updated: 2023/06/10 11:50:46 by shiroz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRC_DIR		:=	sources
 SRCS		:=	main.c \
 				init.c \
 				file_parser.c \
+				color_parsing.c \
+				texture_parsing.c \
 				error.c \
 				clean.c \
 				check_map.c \

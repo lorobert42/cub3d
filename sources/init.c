@@ -6,11 +6,30 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:49:47 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/04 21:10:43 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:42:52 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_raycat(t_info *info, int x)
+{
+	float	camera_x;
+
+	camera_x = 2 * x / (float)WIDTH - 1;
+	info->ray_dir.x = info->dir.x + info->plane.x * camera_x;
+	info->ray_dir.y = info->dir.y + info->plane.y * camera_x;
+	info->map_x = (int)info->pos.x;
+	info->map_y = (int)info->pos.y;
+	if (info->ray_dir.x == 0)
+		info->delta_dist.x = FLT_MAX;
+	else
+		info->delta_dist.x = fabs(1 / info->ray_dir.x);
+	if (info->ray_dir.y == 0)
+		info->delta_dist.y = FLT_MAX;
+	else
+		info->delta_dist.y = fabs(1 / info->ray_dir.y);
+}
 
 static void	init_color(t_color *color)
 {

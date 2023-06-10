@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:23:58 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/09 16:45:26 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/06/10 11:37:42 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	forward(t_info *info)
 	if (info->map[info->nb_lines - (int)(info->pos.y \
 		+ info->dir.y * MOVE_SPEED)][(int)(info->pos.x)] != '1')
 		info->pos.y += info->dir.y * MOVE_SPEED;
-//	printf("Hello %d\n",	mlx_put_image_to_window ( info->mlx_ptr, info->win_ptr, info->s_info.image, 0, 0));
-//	sleep (5);
- }
+}
 
 void	backward(t_info *info)
 {
