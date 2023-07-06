@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:15:11 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/10 14:35:19 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/07/06 18:11:35 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_put_texture(t_info *info, t_put_line *t, int *tmp_i, int i)
 {
 	while (i < t->end)
 	{
-		t->tex_y = (int)t->tex_pos & (t->texture.height - 1);
+		t->tex_y = (int)t->tex_pos;
 		t->tex_pos += t->step;
 		t->tmp = (unsigned int *)(&info->image.image[(WIDTH * i \
 			+ info->line_to_print.n_col) * 4]);
