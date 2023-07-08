@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shiroz <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/08 14:43:15 by shiroz            #+#    #+#             */
+/*   Updated: 2023/07/08 14:43:35 by shiroz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -23,7 +35,6 @@
 # define LEFT 0b00001000
 # define RRIGHT 0b00010000
 # define RLEFT 0b00100000
-
 
 typedef enum e_arg_type
 {
@@ -83,7 +94,6 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
-
 typedef struct s_put_line
 {
 	unsigned int	*tmp;
@@ -102,22 +112,18 @@ typedef struct s_info
 {
 	char			**map;
 	int				nb_lines;
-
-//////////////////shiroz///////////////////////
 	char			start_direction;
 	int				start_column;
 	int				start_line;
 	int				middle;
 	unsigned int	floor;
 	unsigned int	ceiling;
-
 	t_texture		n_info;
 	t_texture		s_info;
 	t_texture		w_info;
 	t_texture		e_info;
 	t_line			line_to_print;
 	t_image			image;
-//////////////////lorobert///////////////////////
 	t_point			pos;
 	t_point			dir;
 	t_point			plane;
