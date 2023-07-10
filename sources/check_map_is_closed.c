@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:03:46 by shiroz            #+#    #+#             */
-/*   Updated: 2023/07/10 12:48:46 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:28:02 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_map_is_closed(char **map, int column, int line, int nb_line)
 {
-	if (line < 0 || ft_strlen(map[line]) <= (size_t)column || column < 0 \
-	|| nb_line < line)
+	if (line < 0 || nb_line <= line || ft_strlen(map[line]) <= (size_t)column \
+		|| column < 0)
 	{
 		fatal_error("Map not closed\n", NULL);
 	}
