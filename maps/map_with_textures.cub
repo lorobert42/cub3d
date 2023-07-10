@@ -1,7 +1,7 @@
-NO ./texture/item.xpm
+NO ./texture/wall.xpm
 SO ./texture/square.xpm
 WE ./texture/ground.xpm
-EA ./texture/square.xpm
+EA ./texture/test.xpm
 
 C 220,200,220
 F 225,30,0

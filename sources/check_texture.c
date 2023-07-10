@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 09:29:06 by shiroz            #+#    #+#             */
-/*   Updated: 2023/06/10 13:58:24 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/07/10 13:12:13 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ void	check_texture_2(t_info *info)
 	info->middle = HEIGHT / 2 - 1;
 	if (!info->image.data || !info->image.image)
 		exit (1);
-	if ((info->n_info.height != info->n_info.width) || (info->s_info.height != \
-	info->s_info.width) || (info->w_info.height != info->w_info.width) || \
-	info->e_info.height != info->e_info.width)
-		exit(printf("Not all Texture are square\n"));
 }
 
 void	check_texture(t_info *info)
@@ -46,7 +42,7 @@ void	check_texture(t_info *info)
 		&info->e_info.width, &info->e_info.height);
 	if (!info->e_info.image || !info->w_info.image || !info->s_info.image || \
 	!info->n_info.image)
-		fatal_error("", "Texture");
+		fatal_error("Invalid texture\n", NULL);
 	info->n_info.info_i.image = mlx_get_data_addr \
 		(info->n_info.image, &info->n_info.info_i.bps, &info->n_info.info_i \
 		.size_line, &info->n_info.info_i.endian);

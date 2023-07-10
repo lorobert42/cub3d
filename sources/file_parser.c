@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:59 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/10 11:41:15 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:16:32 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	create_map(t_info *info, t_list *tmp)
 
 	info->map = malloc(sizeof(char *) * (info->nb_lines + 1));
 	if (!info->map)
-		fatal_error(NULL, "map allocation");
+		fatal_error("Unable to allocate map\n", NULL);
 	backup = tmp;
 	i = 0;
 	while (tmp)
@@ -104,5 +104,6 @@ void	parse_file(t_info *info, char *file_name)
 	}
 	info->nb_lines = ft_lstsize(tmp);
 	create_map(info, tmp);
-	close(fd);
+	if (close(fd) == -1)
+		fatal_error(NULL, file_name);
 }

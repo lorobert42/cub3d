@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:26:23 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/02 10:16:05 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:08:39 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	main(int argc, char **argv)
 	init_mlx(&info);
 	check_texture(&info);
 	hooks(&info);
-	mlx_loop_hook(info.mlx_ptr, move, &info);
-	mlx_loop(info.mlx_ptr);
+	if (mlx_loop_hook(info.mlx_ptr, move, &info) < 0)
+		fatal_error("Unable to start loop", NULL);
+	if (mlx_loop(info.mlx_ptr) < 0)
+		fatal_error("Unable to start loop", NULL);
 	clear_info(&info);
 }

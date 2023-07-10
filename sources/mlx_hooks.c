@@ -6,7 +6,7 @@
 /*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:48:42 by lorobert          #+#    #+#             */
-/*   Updated: 2023/06/04 13:06:38 by lorobert         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:10:57 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	move(t_info *info)
 	if (info->mvt & RLEFT)
 		rleft(info);
 	raycast(info);
-	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, \
-		info->image.data, 0, 0);
+	if (mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, \
+		info->image.data, 0, 0) < 0)
+		fatal_error("Unable to print image\n", NULL);
 	return (0);
 }
 
@@ -70,7 +71,10 @@ static int	key_released(int keycode, t_info *info)
 
 void	hooks(t_info *info)
 {
-	mlx_hook(info->win_ptr, 2, 1L << 0, key_pressed, info);
-	mlx_hook(info->win_ptr, 3, 1L << 1, key_released, info);
-	mlx_hook(info->win_ptr, 17, 0, quit, info);
+	if (mlx_hook(info->win_ptr, 2, 1L << 0, key_pressed, info) < 0)
+		fatal_error("Unable to create hook\n", NULL);
+	if (mlx_hook(info->win_ptr, 3, 1L << 1, key_released, info) < 0)
+		fatal_error("Unable to create hook\n", NULL);
+	if (mlx_hook(info->win_ptr, 17, 0, quit, info) < 0)
+		fatal_error("Unable to create hook\n", NULL);
 }
