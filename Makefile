@@ -6,7 +6,7 @@
 #    By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 10:16:09 by lorobert          #+#    #+#              #
-#    Updated: 2023/07/08 14:49:21 by shiroz           ###   ########.fr        #
+#    Updated: 2023/07/10 11:36:01 by lorobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,6 @@ SRCS		:=	main.c \
 				ft_put_line.c \
 				movements.c \
 				rotations.c
-#				ft_put_texture.c
-#				ft_check_square.c
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
@@ -51,9 +49,9 @@ OBJS		:=	$(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:=	$(OBJS:.o=.d)
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		:=	-Wall -Wextra -Werror
 CPPFLAGS	:=	$(addprefix -I,$(INCS)) -MMD -MP
-LDFLAGS		:=	$(addprefix -L,$(dir $(LIBS_TARGET))) $(addprefix -L,$(dir $(MLX_TARGET))) -fsanitize=address
+LDFLAGS		:=	$(addprefix -L,$(dir $(LIBS_TARGET))) $(addprefix -L,$(dir $(MLX_TARGET)))
 LDLIBS		:=	$(addprefix -l,$(LIBS))
 
 RM			:=	rm -f

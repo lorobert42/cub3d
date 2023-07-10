@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiroz <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: lorobert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:43:15 by shiroz            #+#    #+#             */
-/*   Updated: 2023/07/08 14:43:35 by shiroz           ###   ########.fr       */
+/*   Updated: 2023/07/10 11:34:21 by lorobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MOVE_SPEED 0.02
-# define ROT_SPEED 0.02
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
 
 # define FORWARD 0b00000001
 # define BACKWARD 0b00000010
